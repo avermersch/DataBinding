@@ -26,12 +26,16 @@ public class Converter extends BaseObservable{
     }
 
     public Converter setEuro(String euro) {
-        this.euro = euro;
-
-        this.yen = String.valueOf(Double.parseDouble(this.euro)*135.869324);
-
+       if(! euro.equals("")){
+           this.euro = euro;
+           this.yen = String.valueOf(Double.parseDouble(this.euro)*135.869324);
+       } else {
+            this.euro = String.valueOf(euro);
+            this.yen = String.valueOf(yen);
+       }
         notifyPropertyChanged(BR.euro);
         notifyPropertyChanged(BR.yen);
+
         return this;
     }
 
@@ -43,6 +47,7 @@ public class Converter extends BaseObservable{
     public Converter setYen(String yen) {
         this.yen = yen;
         notifyPropertyChanged(BR.yen);
+
         return this;
     }
 }
